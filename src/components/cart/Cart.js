@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import CartItem from "./CartItem";
 import "./Cart.css";
 import { Button } from "react-bootstrap";
+import CartContext from "../../context/CartContext";
 const cartElements = [
   {
     title: "Colors",
@@ -30,6 +31,7 @@ const cartElements = [
 ];
 
 const Cart = () => {
+  const contxt = useContext(CartContext);
   return (
     <div
       className="d-flex"
@@ -84,8 +86,16 @@ const Cart = () => {
           </span>
         </div>
         <div className="cart-items">
-          {cartElements.map((item)=>{
-            return <CartItem imgSrc={item.imageUrl} itemName={item.title} price={item.price}/>
+          {contxt.cartItems.map((item) => {
+            return (
+              <CartItem
+                imgSrc={item.imageUrl}
+                itemName={item.title}
+                price={item.price}
+                quantity={item.quantity}
+                key={item.id}
+              />
+            );
           })}
         </div>
       </section>

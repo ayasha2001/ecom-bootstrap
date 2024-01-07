@@ -1,7 +1,7 @@
 import React from "react";
 import "./Cart.css";
 
-const CartItem = ({ imgSrc, itemName, price }) => {
+const CartItem = ({ imgSrc, itemName, price, quantity }) => {
   return (
     <div className="cart-row">
       <div className="cart-item cart-column d-flex align-items-center">
@@ -12,7 +12,9 @@ const CartItem = ({ imgSrc, itemName, price }) => {
       </div>
       <span className="cart-price cart-column">${price}</span>
       <div className="cart-quantity cart-column">
-        <input type="text" className="form-control" />
+        <input type="text" className="form-control" value={quantity}>
+          
+        </input>
         <button className="btn btn-danger mt-2">REMOVE</button>
       </div>
     </div>

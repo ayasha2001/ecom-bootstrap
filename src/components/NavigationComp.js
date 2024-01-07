@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import CartContext from "../context/CartContext";
 
 const NavigationComp = ({ setCartOpen }) => {
+  const cntxt = useContext(CartContext);
   const toggleCart = () => {
     setCartOpen((prev) => {
       return !prev;
@@ -47,7 +49,7 @@ const NavigationComp = ({ setCartOpen }) => {
         >
           cart
         </Button>
-        <label style={{ color: "#0dcaf0" }}>1</label>
+        <label style={{ color: "#0dcaf0" }}>{cntxt.count}</label>
       </div>
     </Navbar>
   );

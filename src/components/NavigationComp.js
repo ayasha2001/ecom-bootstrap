@@ -44,6 +44,13 @@ const NavigationComp = ({ setCartOpen }) => {
           >
             About
           </NavLink>
+          <NavLink
+            to="/api"
+            className="text-white fs-4  "
+            style={{ marginRight: "30px" }}
+          >
+            ApiCall
+          </NavLink>
         </Nav>
         <div style={{ marginRight: "20px" }}>
           <Button

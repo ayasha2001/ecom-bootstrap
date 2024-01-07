@@ -18,6 +18,10 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
+        element: <HomePage />,
+      },
+      {
+        path: "/api",
         element: <ApiCall />,
       },
       {

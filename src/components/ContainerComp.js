@@ -1,23 +1,19 @@
-import React from "react";
-import Product, { productsArr } from "./Product";
-import { Container, Row, Col } from "react-bootstrap";
+import React, { useState } from "react";
+import NavigationComp from "../components/NavigationComp";
+import Cart from "./cart/Cart";
+import { Container } from "react-bootstrap";
 import HeadingComp from "./HeadingComp";
 import FooterComp from "./FooterComp";
 
-const ContainerComp = () => {
+const ContainerComp = ({ element }) => {
+  const [cartOpen, setCartOpen] = useState(false);
   return (
     <Container fluid>
+      {/* <NavigationComp setCartOpen={setCartOpen} /> */}
+      {cartOpen && <Cart />}
       <HeadingComp />
-      <Container>
-        <Row>
-          {productsArr.map((product, index) => (
-            <Col xs={6} key={index}>
-              <Product item={product} />
-            </Col>
-          ))}
-        </Row>
-      </Container>
-      <FooterComp/>
+      <Container>{element}</Container>
+      <FooterComp />
     </Container>
   );
 };

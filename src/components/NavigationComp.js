@@ -2,10 +2,11 @@ import React, { useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import CartContext from "../context/CartContext";
+// import CartContext from "../context/CartContext";
+import { NavLink } from "react-router-dom";
 
 const NavigationComp = ({ setCartOpen }) => {
-  const cntxt = useContext(CartContext);
+  // const cntxt = useContext(CartContext);
   const toggleCart = () => {
     setCartOpen((prev) => {
       return !prev;
@@ -19,27 +20,27 @@ const NavigationComp = ({ setCartOpen }) => {
       className="fixed-top"
     >
       <Nav className="d-flex justify-content-between mx-auto">
-        <Nav.Link
-          href="/home"
+        <NavLink
+          to="/"
           className="text-white fs-4"
           style={{ marginRight: "30px" }}
         >
           Home
-        </Nav.Link>
-        <Nav.Link
-          href="#features"
+        </NavLink>
+        <NavLink
+          to="/store"
           className="text-white fs-4"
           style={{ marginRight: "30px" }}
         >
           Store
-        </Nav.Link>
-        <Nav.Link
-          href="#pricing"
+        </NavLink>
+        <NavLink
+          to="/about"
           className="text-white fs-4  "
           style={{ marginRight: "30px" }}
         >
           About
-        </Nav.Link>
+        </NavLink>
       </Nav>
       <div style={{ marginRight: "20px" }}>
         <Button
@@ -49,7 +50,7 @@ const NavigationComp = ({ setCartOpen }) => {
         >
           cart
         </Button>
-        <label style={{ color: "#0dcaf0" }}>{cntxt.count}</label>
+        {/* <label style={{ color: "#0dcaf0" }}>{cntxt.count}</label> */}
       </div>
     </Navbar>
   );

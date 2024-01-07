@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import CartContext from "../context/CartContext";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import HeadingComp from "./HeadingComp";
 
 const NavigationComp = ({ setCartOpen }) => {
@@ -23,27 +23,27 @@ const NavigationComp = ({ setCartOpen }) => {
         className="fixed-top"
       >
         <Nav className="d-flex justify-content-between mx-auto">
-          <Link
+          <NavLink
             to="/"
             className="text-white fs-4"
             style={{ marginRight: "30px" }}
           >
             Home
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to="/store"
             className="text-white fs-4"
             style={{ marginRight: "30px" }}
           >
             Store
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to="/about"
             className="text-white fs-4  "
             style={{ marginRight: "30px" }}
           >
             About
-          </Link>
+          </NavLink>
         </Nav>
         <div style={{ marginRight: "20px" }}>
           <Button

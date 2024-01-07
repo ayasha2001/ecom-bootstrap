@@ -24,12 +24,13 @@ const HomePage = () => {
         Tours
       </h1>
 
-      {arr.map((item) => {
+      {arr.map((item,i) => {
         return (
           <HomePageItem
             date={item.date}
             place={item.place}
             detail={item.detail}
+            key={i}
           />
         );
       })}

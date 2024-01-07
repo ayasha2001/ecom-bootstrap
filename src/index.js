@@ -6,9 +6,10 @@ import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.min.css";
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
-import { createBrowserRouter,RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import StorePage from "./pages/StorePage";
 import ApiCall from "./pages/ApiCall";
+import ContactUsPage from "./pages/ContactUsPage";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const router = createBrowserRouter([
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: "/store",
         element: <StorePage />,
+      },
+      {
+        path: "/contact",
+        element: <ContactUsPage />,
       },
     ],
   },

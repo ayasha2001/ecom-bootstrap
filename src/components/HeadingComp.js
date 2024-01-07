@@ -2,7 +2,7 @@ import React from "react";
 
 const HeadingComp = () => {
   return (
-    <div className="d-flex justify-content-center " style={{backgroundColor:"gray", marginTop:"70px"}}>
+    <div className="d-flex justify-content-center " style={{backgroundColor:"gray", marginTop:"60px"}}>
       <h1
         className="text-white"
         style={{

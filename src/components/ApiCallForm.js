@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Card, Button } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 
-const ApiCallForm = () => {
+const ApiCallForm = ({ postData }) => {
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
   const [date, setDate] = useState("");
@@ -25,7 +25,10 @@ const ApiCallForm = () => {
       text: text,
       date: date,
     };
-    console.log("newMovieObj", newMovieObj);
+    postData(newMovieObj);
+    setText("");
+    setTitle("");
+    setDate("");
   };
 
   return (

@@ -18,59 +18,65 @@ const ApiCall = () => {
 
   //to not create this function everytime but only create it if some dependecy changess
   const fetchData = useCallback(async () => {
+    let a = [];
     try {
-      const data = await fetch("https://swapi.dev/api/films");
+      const data = await fetch(
+        "https://react-ecom-bootstrap-default-rtdb.asia-southeast1.firebasedatabase.app/movies.json"
+      );
       if (!data.ok) {
         throw new Error(`HTTP error! Status: ${data.status}`);
       }
       const json = await data.json();
-      setArr(json.results);
+      for (const key in json) {
+        a.push({ ...json[key], id: key });
+      }
+      setArr(a);
       setIsLoading(false);
-      clearInterval(retryInterval);
     } catch (error) {
       console.error("API call error:", error);
       setError("Something went wrong. Retrying...");
-      retryInterval = setInterval(retryFetchData, 5000);
     }
   }, []);
+
+  const postData = async (movie) => {
+    const data = await fetch(
+      "https://react-ecom-bootstrap-default-rtdb.asia-southeast1.firebasedatabase.app/movies.json",
+      {
+        method: "POST", // specify the HTTP method
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(movie),
+      }
+    );
+    const json = await data.json();
+    fetchData();
+  };
+
+  const deleteData = async (movieId) => {
+    try {
+      const data = await fetch(
+        `https://react-ecom-bootstrap-default-rtdb.asia-southeast1.firebasedatabase.app/movies/${movieId}.json`,
+        {
+          method: "DELETE",
+        }
+      );
+      if (!data.ok) {
+        throw new Error(`HTTP error! Status: ${data.status}`);
+      }
+      fetchData();
+    } catch (error) {
+      console.error("Delete operation failed:", error);
+    }
+  };
 
   useEffect(() => {
     fetchData();
   }, []);
-  let retryInterval;
-
-  const retryFetchData = () => {
-    fetchData();
-  };
-
-  const handleCancelRetry = () => {
-    setIsLoading(false);
-    setBtnVisible(true);
-    setError(null);
-    clearInterval(retryInterval);
-  };
 
   return (
     <div>
-      <ApiCallForm />
-      {error && (
-        <Card
-          className="mt-2 mb-2 p-2"
-          style={{ width: "60%", margin: "auto" }}
-        >
-          <Alert variant="danger" className="text-center mt-4">
-            {error}
-            <Button
-              variant="outline-danger"
-              size="sm"
-              className="ml-2"
-              onClick={handleCancelRetry}
-            >
-              Cancel Retry
-            </Button>
-          </Alert>
-        </Card>
-      )}
+      <ApiCallForm postData={postData} />
 
       {isLoading && !error ? (
         <Spinner
@@ -84,7 +90,7 @@ const ApiCall = () => {
           style={{ width: "60%", margin: "auto" }}
         >
           {arr.map((item, i) => (
-            <ApiCallItem key={i} item={item} />
+            <ApiCallItem key={i} item={item} deleteData={deleteData} />
           ))}
         </Card>
       )}

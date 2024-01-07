@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import ApiCallItem from "../components/ApiCallItem";
 import { Button, Spinner, Alert } from "react-bootstrap";
 
@@ -15,7 +15,7 @@ const ApiCall = () => {
     fetchData();
   };
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     try {
       const data = await fetch("https://swapi.dev/api/films");
       if (!data.ok) {
@@ -30,8 +30,11 @@ const ApiCall = () => {
       setError("Something went wrong. Retrying...");
       retryInterval = setInterval(retryFetchData, 5000);
     }
-  };
+  }, []);
 
+  useEffect(() => {
+    fetchData();
+  }, []);
   let retryInterval;
 
   const retryFetchData = () => {
@@ -44,8 +47,6 @@ const ApiCall = () => {
     setError(null);
     clearInterval(retryInterval);
   };
-
-  
 
   return (
     <div>
@@ -62,16 +63,25 @@ const ApiCall = () => {
       {error && (
         <Alert variant="danger" className="text-center mt-4">
           {error}
-          <Button variant="outline-danger" size="sm" className="ml-2" onClick={handleCancelRetry}>
+          <Button
+            variant="outline-danger"
+            size="sm"
+            className="ml-2"
+            onClick={handleCancelRetry}
+          >
             Cancel Retry
           </Button>
         </Alert>
       )}
 
       {isLoading && !error ? (
-        <Spinner animation="border" className="d-flex m-auto mt-4 mb-4" variant="primary" />
+        <Spinner
+          animation="border"
+          className="d-flex m-auto mt-4 mb-4"
+          variant="primary"
+        />
       ) : (
-        arr.map((item,i) => <ApiCallItem key={i} item={item} />)
+        arr.map((item, i) => <ApiCallItem key={i} item={item} />)
       )}
     </div>
   );

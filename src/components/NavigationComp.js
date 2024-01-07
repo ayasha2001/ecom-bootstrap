@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import HeadingComp from "./HeadingComp";
 
 const NavigationComp = ({ setCartOpen }) => {
-  const cntxt = useContext(CartContext);
+  // const cntxt = useContext(CartContext);
   const toggleCart = () => {
     setCartOpen((prev) => {
       return !prev;

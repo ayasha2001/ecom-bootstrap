@@ -1,9 +1,11 @@
-import React from "react";
-import Product, { productsArr } from "./Product";
-import { Container, Row, Col } from "react-bootstrap";
+import React, { useState } from "react";
+import NavigationComp from "../components/NavigationComp";
+import Cart from "./cart/Cart";
+import { Container } from "react-bootstrap";
 import HeadingComp from "./HeadingComp";
 
-const ContainerComp = () => {
+const ContainerComp = ({ element }) => {
+  const [cartOpen, setCartOpen] = useState(false);
   return (
     <Container fluid>
       <Container>

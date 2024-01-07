@@ -1,5 +1,8 @@
 import { useState } from "react";
-import ContainerComp from "./components/ContainerComp";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import AboutPage from "./pages/AboutPage";
+import StorePage from "./pages/StorePage";
 import NavigationComp from "./components/NavigationComp";
 import Cart from "./components/cart/Cart";
 import CartContextProvider from "./context/CartContextProvider";
@@ -13,7 +16,21 @@ import FooterComp from "./components/FooterComp";
 // const router = createBrowserRouter([{ path: "/", element: <HomePage /> }]);
 
 function App() {
-  const [cartOpen, setCartOpen] = useState(false);
+  // const [cartOpen, setCartOpen] = useState(false);
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <HomePage />,
+    },
+    {
+      path: "/store",
+      element: <StorePage />,
+    },
+    {
+      path: "/about",
+      element: <AboutPage />,
+    },
+  ]);
   return (
     <CartContextProvider>
       {cartOpen && <Cart />}

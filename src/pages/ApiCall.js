@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import ApiCallItem from "../components/ApiCallItem";
-import { Button, Spinner, Alert } from "react-bootstrap";
+import { Button, Spinner, Alert, Card } from "react-bootstrap";
+import ApiCallForm from "../components/ApiCallForm";
 
 const ApiCall = () => {
   const [arr, setArr] = useState([]);
@@ -15,6 +16,7 @@ const ApiCall = () => {
     fetchData();
   };
 
+  //to not create this function everytime but only create it if some dependecy changess
   const fetchData = useCallback(async () => {
     try {
       const data = await fetch("https://swapi.dev/api/films");
@@ -50,28 +52,24 @@ const ApiCall = () => {
 
   return (
     <div>
-      {isBtnVisible && (
-        <Button
-          variant="info"
-          className="text-white font-weight-bold d-flex m-auto mt-4 mb-4"
-          onClick={handleClick}
-        >
-          MAKE API CALL
-        </Button>
-      )}
-
+      <ApiCallForm />
       {error && (
-        <Alert variant="danger" className="text-center mt-4">
-          {error}
-          <Button
-            variant="outline-danger"
-            size="sm"
-            className="ml-2"
-            onClick={handleCancelRetry}
-          >
-            Cancel Retry
-          </Button>
-        </Alert>
+        <Card
+          className="mt-2 mb-2 p-2"
+          style={{ width: "60%", margin: "auto" }}
+        >
+          <Alert variant="danger" className="text-center mt-4">
+            {error}
+            <Button
+              variant="outline-danger"
+              size="sm"
+              className="ml-2"
+              onClick={handleCancelRetry}
+            >
+              Cancel Retry
+            </Button>
+          </Alert>
+        </Card>
       )}
 
       {isLoading && !error ? (
@@ -81,7 +79,28 @@ const ApiCall = () => {
           variant="primary"
         />
       ) : (
-        arr.map((item, i) => <ApiCallItem key={i} item={item} />)
+        <Card
+          className="mt-2 mb-2 p-2"
+          style={{ width: "60%", margin: "auto" }}
+        >
+          {arr.map((item, i) => (
+            <ApiCallItem key={i} item={item} />
+          ))}
+        </Card>
+      )}
+      {isBtnVisible && (
+        <Card
+          className="mt-2 mb-2 p-2"
+          style={{ width: "60%", margin: "auto" }}
+        >
+          <Button
+            variant="info"
+            className="text-white font-weight-bold d-flex m-auto mt-4 mb-4"
+            onClick={handleClick}
+          >
+            MAKE API CALL
+          </Button>
+        </Card>
       )}
     </div>
   );

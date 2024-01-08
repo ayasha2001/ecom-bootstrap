@@ -1,10 +1,16 @@
-import React from 'react'
-import ContainerComp from '../components/ContainerComp'
+import React, { useContext } from "react";
+import { Navigate } from "react-router-dom";
+import ContainerComp from "../components/ContainerComp";
+import AuthContext from "../context/AuthContext";
 
 const StorePage = () => {
+  const cntxt = useContext(AuthContext);
+  if(!cntxt.isLoggedIn){
+    return <Navigate to="/auth"/>
+  }
   return (
-   <ContainerComp/>
-  )
-}
+    <ContainerComp />
+  );
+};
 
-export default StorePage
+export default StorePage;

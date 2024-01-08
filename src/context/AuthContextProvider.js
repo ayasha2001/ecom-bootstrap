@@ -4,10 +4,16 @@ import AuthContext from "./AuthContext";
 const AuthContextProvider = (props) => {
   const [isLoggedIn, setIsLogin] = useState(false);
   const [token, setToken] = useState("");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    setToken(localStorage.getItem("user_token"));
-    setIsLogin(true)
+    setLoading(true)
+    const storedToken = localStorage.getItem("user_token");
+    if (storedToken) {
+      setToken(JSON.parse(storedToken));
+      setIsLogin(true);
+    }
+    setLoading(false)
   }, []);
 
   const loginUser = (token) => {

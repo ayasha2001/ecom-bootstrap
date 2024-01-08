@@ -1,15 +1,15 @@
 import React, { useContext, useState } from "react";
 import { Card, Button } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 
 const AuthForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setLoading] = useState(false);
-  const nav = useNavigate()
-  const cntxt = useContext(AuthContext)
+  const nav = useNavigate();
+  const cntxt = useContext(AuthContext);
 
   const handleChangeEmail = (e) => {
     setEmail(e.target.value);

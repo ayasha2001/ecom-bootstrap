@@ -10,6 +10,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import StorePage from "./pages/StorePage";
 import ApiCall from "./pages/ApiCall";
 import ContactUsPage from "./pages/ContactUsPage";
+import ProductDetailPage from "./pages/ProductDetailPage";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const router = createBrowserRouter([
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
       {
         path: "/store",
         element: <StorePage />,
+      },
+      {
+        path: "/store/:productId",
+        element: <ProductDetailPage />,
       },
       {
         path: "/contact",

@@ -52,12 +52,19 @@ const NavigationComp = ({ setCartOpen }) => {
             Contact
           </NavLink>
           <NavLink
+            to="/auth"
+            className="text-white fs-4  "
+            style={{ marginRight: "30px" }}
+          >
+            Login
+          </NavLink>
+          {/* <NavLink
             to="/api"
             className="text-white fs-4  "
             style={{ marginRight: "30px" }}
           >
             ApiCall
-          </NavLink>
+          </NavLink> */}
         </Nav>
         <div style={{ marginRight: "20px" }}>
           <Button

@@ -11,6 +11,7 @@ import StorePage from "./pages/StorePage";
 import ApiCall from "./pages/ApiCall";
 import ContactUsPage from "./pages/ContactUsPage";
 import ProductDetailPage from "./pages/ProductDetailPage";
+import AuthPage from "./pages/AuthPage";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const router = createBrowserRouter([
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
       {
         path: "/contact",
         element: <ContactUsPage />,
+      },
+      {
+        path: "/auth",
+        element: <AuthPage />,
       },
     ],
   },
